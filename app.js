@@ -10,7 +10,8 @@ let todoInput,
   popupInput,
   popupAddBtn,
   allTodos,
-  popupCloseBtn;
+  popupCloseBtn,
+  todos;
 
 const main = () => {
   prepareDOMElements();
@@ -35,6 +36,7 @@ const prepareDOMEvents = () => {
   todoList.addEventListener("click", checkClick);
   popupCloseBtn.addEventListener("click", closePopup);
   popupAddBtn.addEventListener("click", approvePopup);
+filterOption.addEventListener("click", filterTodo);
 };
 
 //Functions
@@ -65,10 +67,11 @@ const addNewTask = (event) => {
     newTodo = document.createElement("li");
     newTodo.classList.add("todo-item");
     newTodo.textContent = todoInput.value;
-    todoList.append(newTodo);
+    todoList.append(todoInput.value);
 
     addTodo();
     errorInfo.textContent = "";
+    saveLocalTodos(newTodo);
   } else {
     errorInfo.textContent = "Wpisz treść zadania!";
   }
@@ -102,9 +105,10 @@ const closePopup = () => {
   popupInfo.textContent = "";
 };
 
-const approvePopup = (li) => {
+const approvePopup = () => {
   if (popupInput.value !== "") {
     todoToEdit.firstChild.textContent = popupInput.value;
+    popup.classList.remove("active");
     popupInfo.textContent = "";
   } else {
     popupInfo.textContent = "Musisz wprowadzić jakąś treść!";
@@ -120,40 +124,43 @@ const removeItems = (e) => {
 };
 
 //filter
-// function filterTodo(e) {
-//   const todos = todoList.children;
-//   for (const todo of todos) {
-//     switch (e.target.value) {
-//       case "all":
-//         todo.style.display = "flex";
-//         break;
-//       case "completed":
-//         if (todo.classList.contains("completed")) {
-//           todo.style.display = "flex";
-//         } else {
-//           todo.style.display = "none";
-//         }
-//         break;
-//       case "uncompleted":
-//         if (!todo.classList.contains("completed")) {
-//           todo.style.display = "flex";
-//         } else {
-//           todo.style.display = "none";
-//         }
-//     }
-//   }
-// }
-// function saveLocalTodos(todo) {
-//   let todos;
-//   if (localStorage.getItem("todos") === null) {
-//     todos = [];
-//   } else {
-//     todos = JSON.parse(localStorage.getItem("todos"));
-//   }
-//   todos.push(todo);
-//   localStorage.setItem("todos", JSON.stringify(todos));
-// }
+const filterTodo = (e) => {
+  const todos = todoList.children;
+  console.log(todos);
+  for (const todo of todos) {
+    switch (e.target.value) {
+      case "all":
+        todo.style.display = "flex";
+        break;
+      case "completed":
+        if (todo.classList.contains("completed")) {
+          todo.style.display = "flex";
+        } else {
+          todo.style.display = "none";
+        }
+        break;
+      case "uncompleted":
+        if (!todo.classList.contains("completed")) {
+          todo.style.display = "flex";
+        } else {
+          todo.style.display = "none";
+        }
+    }
+  }
+}
 
-// filterOption.addEventListener("click", filterTodo);
+//Save to localStorage
+
+const saveLocalTodos = (todo) => {
+  if (localStorage.getItem("todos") === null) {
+    todos = [];
+  } else {
+    todos = JSON.parse(localStorage.getItem("todos"));
+  }
+  todos.push(todo);
+  localStorage.setItem("todos", JSON.stringify(todos))
+}
+
+console.log(todos);
 
 document.addEventListener("DOMContentLoaded", main);
