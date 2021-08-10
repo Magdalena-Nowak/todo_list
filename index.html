@@ -31,11 +31,25 @@
             </select>
         </div>
     </form>
+    <div class="todos__list">
+        <h3>Lista zadań:</h3>
+        <p class="error-info">Brak zadań na liście.</p>
+    </div>
     <div class="todo-container">
         <ul class="todo-list">
         </ul>
     </div>
-
+    <div class="popup">
+        <h3>Edytuj zadanie:</h3>
+        <div class="popup-body">
+            <p class="popup-info"></p>
+            <input type="text" class="popup-input" placeholder="Wprowadź nową treść zadania...">
+            <div>
+                <button class="popup-btn accept">Zatwierdź</button>
+                <button class="popup-btn cancel">Anuluj</button>
+            </div>
+        </div>
+    </div>
     <script src="app.js"></script>
 </body>
 
