@@ -380,7 +380,6 @@ select {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  opacity: 0;
   transition: opacity 1s ease-in-out;
 }
 .popup.active {
