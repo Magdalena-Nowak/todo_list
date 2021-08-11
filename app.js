@@ -16,6 +16,7 @@ let todoInput,
 const main = () => {
   prepareDOMElements();
   prepareDOMEvents();
+  getLocalTodos();
 };
 const prepareDOMElements = () => {
   todoInput = document.querySelector(".todo-input");
@@ -36,7 +37,7 @@ const prepareDOMEvents = () => {
   todoList.addEventListener("click", checkClick);
   popupCloseBtn.addEventListener("click", closePopup);
   popupAddBtn.addEventListener("click", approvePopup);
-filterOption.addEventListener("click", filterTodo);
+  filterOption.addEventListener("click", filterTodo);
 };
 
 //Functions
@@ -44,9 +45,9 @@ function addTodo() {
   const todoDiv = document.createElement("div");
   todoDiv.classList.add("todo");
 
-  const completedButton = document.createElement("button");
-  completedButton.classList.add("complete-btn");
-  completedButton.innerHTML = '<i class="fas fa-check-circle"></i>';
+  const completeButton = document.createElement("button");
+  completeButton.classList.add("complete-btn");
+  completeButton.innerHTML = '<i class="fas fa-check-circle"></i>';
 
   const changeButton = document.createElement("button");
   changeButton.classList.add("change-btn");
@@ -55,10 +56,9 @@ function addTodo() {
   const trashButton = document.createElement("button");
   trashButton.classList.add("trash-btn");
   trashButton.innerHTML = '<i class="fas fa-minus-circle"></i>';
-  newTodo.append(todoDiv);
-  todoDiv.append(completedButton, changeButton, trashButton);
 
-  todoInput.value = "";
+  todoDiv.append(completeButton, changeButton, trashButton);
+  newTodo.append(todoDiv);
 }
 
 const addNewTask = (event) => {
@@ -67,13 +67,22 @@ const addNewTask = (event) => {
     newTodo = document.createElement("li");
     newTodo.classList.add("todo-item");
     newTodo.textContent = todoInput.value;
-    todoList.append(todoInput.value);
-
+    todoList.append(newTodo);
     addTodo();
+    saveLocalTodos(todoInput.value);
+    todoInput.value = "";
     errorInfo.textContent = "";
-    saveLocalTodos(newTodo);
   } else {
     errorInfo.textContent = "Wpisz treść zadania!";
+  }
+};
+
+const checkPresenceLi = () => {
+  allTodos = todoList.querySelectorAll("li");
+  if (allTodos.length !== 0) {
+    errorInfo.textContent = "";
+  } else {
+    errorInfo.textContent = "Brak zadań na liście";
   }
 };
 
@@ -82,12 +91,8 @@ const checkClick = (e) => {
     e.target.closest("li").classList.toggle("completed");
   } else if (e.target.matches(".trash-btn")) {
     removeItems(e);
-    allTodos = todoList.querySelectorAll("li");
-    if (allTodos.length !== 0) {
-      errorInfo.textContent = "";
-    } else {
-      errorInfo.textContent = "Brak zadań na liście";
-    }
+    removeLocalTodos(e.target);
+    checkPresenceLi();
   } else if (e.target.matches(".change-btn")) {
     editTodo(e);
   }
@@ -147,20 +152,44 @@ const filterTodo = (e) => {
         }
     }
   }
-}
+};
 
 //Save to localStorage
 
 const saveLocalTodos = (todo) => {
   if (localStorage.getItem("todos") === null) {
-    todos = [];
+    todosArr = [];
   } else {
-    todos = JSON.parse(localStorage.getItem("todos"));
+    todosArr = JSON.parse(localStorage.getItem("todos"));
   }
-  todos.push(todo);
-  localStorage.setItem("todos", JSON.stringify(todos))
-}
+  todosArr.push(todo);
+  localStorage.setItem("todos", JSON.stringify(todosArr));
+};
 
-console.log(todos);
+const getLocalTodos = () => {
+  if (localStorage.getItem("todos") === null) {
+    todosArr = [];
+  } else {
+    todosArr = JSON.parse(localStorage.getItem("todos"));
+  }
+  todosArr.forEach(function (todo) {
+    newTodo = document.createElement("li");
+    newTodo.classList.add("todo-item");
+    newTodo.textContent = todo;
+    todoList.append(newTodo);
+    addTodo();
+  });
+  checkPresenceLi();
+};
+
+const removeLocalTodos = (todo) => {
+  todosArr = JSON.parse(localStorage.getItem("todos"));
+
+  const searchedTodo = todo.closest("li").textContent.replace("Edit", "");
+  todosArr.splice(todosArr.indexOf(searchedTodo), 1);
+  localStorage.setItem("todos", JSON.stringify(todosArr));
+};
+
+// localStorage.clear();
 
 document.addEventListener("DOMContentLoaded", main);
