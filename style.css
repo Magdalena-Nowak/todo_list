@@ -5,82 +5,79 @@
 }
 
 body {
-  position: relative;
-  font-size: 62.5%;
-  font-family: "Poppins", sans-serif;
-  min-height: 100vh;
+  font-size: 10px;
+  font-family: "Cairo", sans-serif;
+  font-weight: 400;
   background: linear-gradient(120deg, #6d597a, #b56576);
-  color: #eeeae8;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
+  position: relative;
 }
 
+main {
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+}
+
+/* Header */
+
 header {
-  font-size: 1.4rem;
+  font-size: 1rem;
   text-align: center;
   margin: 2rem 0;
+  color: #253850;
+  font-family: "Lobster", cursive;
+}
+
+@media (min-width: 992px) {
+  header {
+    font-size: 1.2rem;
+  }
+}
+
+@media (min-width: 1400px) {
+  header {
+    font-size: 1.4rem;
+  }
 }
 
 /* Form style */
-
 form {
   min-height: 20vh;
-  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-@media screen and (min-width: 1024px) {
-  form {
-    flex-direction: row;
-  }
-}
-
 .text-area {
-  height: 2rem;
-  width: 70%;
-  margin: 0 auto;
-  margin-bottom: 1.5rem;
-  display: flex;
-  justify-content: center;
+  width: 80%;
+  margin: 1rem auto;
   position: relative;
 }
 
-@media screen and (min-width: 520px) {
-  .text-area {
-    width: 50%;
-  }
-}
-
-@media screen and (min-width: 860px) {
-  .text-area {
-    width: 25rem;
-  }
-}
-
-@media screen and (min-width: 1024px) {
-  .text-area {
-    margin: 0 5rem;
-  }
-}
-
-.todo-input,
-.todo-button {
-  height: 100%;
-  font-size: 1rem;
+.todo-input {
+  width: 100%;
+  font-size: 1.2rem;
+  font-family: "Cairo", sans-serif;
   border: none;
   background-color: #eeeae8;
   color: #355070;
 }
+
+input[type="text"] {
+  padding: 0.2rem 0.5rem;
+}
+
 .todo-button {
   width: 15%;
+  height: 100%;
   position: absolute;
   top: 0;
   right: 0;
+  border: none;
+  color: #355070;
   cursor: pointer;
   transition: all 0.6s ease-in-out;
 }
@@ -90,50 +87,26 @@ form {
   color: #eeeae8;
 }
 
-.todo-input {
-  width: 100%;
-  font-family: "Poppins", sans-serif;
-  position: relative;
+.todo-button i {
+  font-size: 1.3rem;
 }
-
-/* Select style */
 
 .select {
-  width: 50%;
-  overflow: hidden;
+  width: 60%;
   position: relative;
-  margin-bottom: 1rem;
 }
-
-@media screen and (min-width: 520px) {
-  .select {
-    width: 30%;
-  }
-}
-
-@media screen and (min-width: 860px) {
-  .select {
-    width: 12rem;
-  }
-}
-
-@media screen and (min-width: 1024px) {
-  .select {
-    margin: 0;
-  }
-}
-
 .select::after {
   content: "\25BC";
-  position: absolute;
-  top: 0;
-  right: 0;
-  color: #355070;
   height: 100%;
   width: 20%;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: absolute;
+  font-size: 1rem;
+  top: 0;
+  right: 0;
+  color: #355070;
   pointer-events: none;
   transition: all 0.6s ease-in-out;
 }
@@ -151,38 +124,119 @@ select {
   border: none;
 }
 select {
+  width: 100%;
   color: #355070;
-  font-family: "Poppins", sans-serif;
+  font-family: "Cairo", sans-serif;
   font-size: 1rem;
-  padding: 0.2rem 0.5rem;
-  width: 100%;
+  padding: 0rem 0.5rem;
 }
 
-/* To do container */
-
-.todo-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+@media screen and (min-width: 576px) {
+  .text-area {
+    width: 60%;
+  }
+  .select {
+    width: 40%;
+  }
 }
+
+@media screen and (min-width: 768px) {
+  .select {
+    width: 25%;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .text-area {
+    width: 40%;
+  }
+  .select {
+    width: 20%;
+  }
+  select {
+    font-size: 1.2rem;
+  }
+  .todo-input,
+  .todo-button i {
+    font-size: 1.6rem;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .text-area {
+    width: 40rem;
+  }
+  .select {
+    width: 15rem;
+  }
+  select,
+  .select::after {
+    font-size: 1.4rem;
+  }
+  .todo-input {
+    font-size: 1.6rem;
+  }
+}
+
+/* Error alert */
+.todos__list {
+  margin: 1rem auto;
+  width: 80%;
+  text-align: center;
+  font-size: 1rem;
+  color: #253850;
+}
+.todos__list {
+  padding: 0.2rem 0;
+}
+.error-info {
+  background: #355070;
+  color: #eeeae8;
+  font-size: 1rem;
+}
+
+@media screen and (min-width: 576px) {
+  .todos__list {
+    width: 60%;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .todos__list {
+    width: 40%;
+    font-size: 1.2rem;
+  }
+  .error-info {
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .todos__list {
+    width: 40rem;
+    font-size: 1.4rem;
+  }
+  .error-info {
+    font-size: 1.4rem;
+  }
+}
+
+/* Todo container */
 
 .todo-list {
-  width: 90%;
+  width: 80%;
+  margin: 0.5rem auto;
   list-style: none;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: stretch;
-  /* overflow-y: scroll; */
 }
 
 .todo-item {
-  width: 100%;
   margin: 0.5rem 0;
+  padding-left: 0.5rem;
   display: flex;
   justify-content: space-between;
-  align-items: center;
   background: rgba(109, 89, 122, 0.7);
   font-size: 1.2rem;
   color: #eeeae8;
@@ -191,46 +245,31 @@ select {
 
 .todo {
   display: flex;
-  justify-content: center;
-}
-.error-info,
-.popup-info {
-  background: #355070;
-  color: #eeeae8;
-  font-size: 1rem;
-}
-.todos__list {
-  margin: 1rem auto;
-  width: 90%;
-  text-align: center;
-  font-size: 1rem;
+  justify-content: flex-end;
 }
 
 .trash-btn,
 .complete-btn,
 .change-btn {
+  padding: 0 0.5rem;
   background-color: rgba(109, 89, 122, 0.1);
-  color: #355070;
-  font-size: 2rem;
+  color: #253850;
+  font-size: 1.3rem;
   border: none;
-  padding: 0.1rem 0.6rem;
   cursor: pointer;
   transition: all 0.6s ease-in-out;
 }
-.change-btn {
-  font-size: 1.4rem;
-  font-weight: bolder;
+
+.trash-btn i,
+.complete-btn i,
+.change-btn i {
+  pointer-events: none;
 }
 .trash-btn:hover,
 .complete-btn:hover,
 .change-btn:hover {
   background-color: #355070;
   color: #eeeae8;
-}
-
-.fa-check-circle,
-.fa-minus-circle {
-  pointer-events: none;
 }
 
 .completed {
@@ -243,25 +282,70 @@ select {
   opacity: 0;
 }
 
-/* .popup {
-  display: none;
-} */
+@media (min-width: 576px) {
+  .todo-list {
+    width: 75%;
+  }
+}
+
+@media (min-width: 992px) {
+  .todo-list {
+    width: 55%;
+  }
+  .trash-btn,
+  .complete-btn,
+  .change-btn {
+    font-size: 1.5rem;
+    padding: 0 1rem;
+  }
+  .todo-item {
+    height: 3rem;
+    font-size: 1.4rem;
+    font-weight: bolder;
+  }
+}
+
+@media (min-width: 1400px) {
+  .todo-list {
+    width: 55rem;
+    font-size: 1.6rem;
+  }
+  .todo-item {
+    height: 3.5rem;
+    font-size: 1.6rem;
+  }
+  .trash-btn,
+  .complete-btn,
+  .change-btn {
+    font-size: 1.8rem;
+  }
+}
 
 .popup {
+  /* display: none; */
   width: 90%;
-  height: 30vh;
+  height: 45vh;
   position: absolute;
-  margin: 0 auto;
-  display: none;
+  top: 50%;
+  left: 50%;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  font-size: 1.2rem;
-  color: #355070;
+  font-size: 1rem;
+  color: #253850;
   background-color: #eeeae8;
+  text-align: center;
   opacity: 0;
+  pointer-events: none;
   transition: all 0.8s ease-in-out;
 }
+
+.popup-info {
+  background: #355070;
+  color: #eeeae8;
+  font-size: 1rem;
+  margin: 1rem 0;
+}
+
 .popup-body {
   margin: 1rem 0;
   display: flex;
@@ -270,18 +354,20 @@ select {
   align-items: center;
 }
 
-.popup-body input {
+.popup-input {
   margin: 0.5rem 0rem;
-  width: 100%;
-  height: 2rem;
+  width: 90%;
   border: 1px solid #355070;
   font-size: 1.2rem;
+  color: #253850;
+  font-family: "Cairo", sans-serif;
 }
 
 .popup-btn {
   background: #355070;
   margin: 1rem 0rem;
   font-size: 1rem;
+  color: #eeeae8;
   border: none;
   padding: 0.4rem 1rem;
   cursor: pointer;
@@ -291,10 +377,42 @@ select {
 .popup-btn:hover {
   background: #1b2b3f;
   color: #eeeae8;
-}  
+}
 
 .popup.active {
-  display: flex;
-  transform: translateY(50%);
+  transform: translate(-50%, -50%);
+  pointer-events: all;
   opacity: 1;
+}
+
+@media (min-width: 576px) {
+  .popup {
+    width: 35rem;
+    height: 20rem;
+  }
+  .popup-input {
+    width: 80%;
+  }
+}
+
+@media (min-width: 992px) {
+  .popup,
+  .popup-info,
+  .popup-btn {
+    font-size: 1.2rem;
+  }
+  .popup-input {
+    font-size: 1.4rem;
+  }
+}
+
+@media (min-width: 1400px) {
+  .popup,
+  .popup-info,
+  .popup-btn {
+    font-size: 1.4rem;
+  }
+  .popup-input {
+    font-size: 1.6rem;
+  }
 }

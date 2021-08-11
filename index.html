@@ -9,7 +9,8 @@
         integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
         crossorigin="anonymous" />
     <link rel="shortcut icon" href="#">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600&family=Lobster&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css" type="text/css">
     <title>Todo List</title>
 </head>
@@ -18,38 +19,40 @@
     <header>
         <h1>Todo List</h1>
     </header>
-    <form>
-        <div class="text-area">
-            <input type="text" class="todo-input">
-            <button class="todo-button" type="submit"><i class="fas fa-plus-circle"></i></button>
+    <main>
+        <form>
+            <div class="text-area">
+                <input type="text" class="todo-input">
+                <button class="todo-button" type="submit"><i class="fas fa-plus-circle"></i></button>
+            </div>
+            <div class="select">
+                <select name="todos" class="filter-todo">
+                    <option value="all">All</option>
+                    <option value="completed">Completed</option>
+                    <option value="uncompleted">Uncompleted</option>
+                </select>
+            </div>
+        </form>
+        <div class="todos__list">
+            <h3>Lista zadań:</h3>
+            <p class="error-info">Brak zadań na liście.</p>
         </div>
-        <div class="select">
-            <select name="todos" class="filter-todo">
-                <option value="all">All</option>
-                <option value="completed">Completed</option>
-                <option value="uncompleted">Uncompleted</option>
-            </select>
+        <div class="todo-container">
+            <ul class="todo-list">
+            </ul>
         </div>
-    </form>
-    <div class="todos__list">
-        <h3>Lista zadań:</h3>
-        <p class="error-info">Brak zadań na liście.</p>
-    </div>
-    <div class="todo-container">
-        <ul class="todo-list">
-        </ul>
-    </div>
-    <div class="popup">
-        <h3>Edytuj zadanie:</h3>
-        <div class="popup-body">
-            <p class="popup-info"></p>
-            <input type="text" class="popup-input" placeholder="Wprowadź nową treść zadania...">
-            <div>
-                <button class="popup-btn accept">Zatwierdź</button>
-                <button class="popup-btn cancel">Anuluj</button>
+        <div class="popup">
+            <h3>Edytuj zadanie:</h3>
+            <div class="popup-body">
+                <p class="popup-info"></p>
+                <input type="text" class="popup-input" placeholder="Wprowadź nową treść zadania...">
+                <div>
+                    <button class="popup-btn accept">Zatwierdź</button>
+                    <button class="popup-btn cancel">Anuluj</button>
+                </div>
             </div>
         </div>
-    </div>
+    </main>
     <script src="app.js"></script>
 </body>
 
