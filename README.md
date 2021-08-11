@@ -1,4 +1,6 @@
-# todo_list
+# Todo List
+
+The website dedicated to doing a to-do list. 
 
 Live demo: https://magdalena-nowak.github.io/todo_list/
 
@@ -10,8 +12,9 @@ Live demo: https://magdalena-nowak.github.io/todo_list/
 * [Setup](#setup)
 
 ## General Info
-Page website based on the course Developed by Ed. Practicing use objects, classes and constructors in JS. 
-The theme was created using HTML, CSS, SCSS, JavaScript, BEM.
+
+The project use JavaScript, HTML and CSS. 
+This page can add new to-do, select a task as delete or complete. Allows you to edit the entered task in a pop-up window. All inputs check fileds and inform when inputs are empty. Allows you to sort the entered tasks into all, completed and uncompleted. Save and dele jobs is updated in local Storage.
 
 ## Technologies Used
 
