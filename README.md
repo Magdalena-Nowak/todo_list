@@ -14,7 +14,7 @@ Live demo: https://magdalena-nowak.github.io/todo_list/
 ## General Info
 
 The project use JavaScript, HTML and CSS. 
-This page can add new to-do, select a task as delete or complete. Allows you to edit the entered task in a pop-up window. All inputs check fileds and inform when inputs are empty. Allows you to sort the entered tasks into all, completed and uncompleted. Save and delete job is updated in local Storage.
+This page can add new to-do item, mark a task as deleted or completed. It allows user to edit the entered task in a pop-up window. All inputs are validated and when text is empty user is inform. Website allows grouping the entered tasks into all, completed and uncompleted. Saved and deleted jobs are persised in local Storage.
 
 ## Technologies Used
 
